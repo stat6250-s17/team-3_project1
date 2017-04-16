@@ -32,7 +32,7 @@ Possible Follow-up Steps:
 *
 Research Question: Does a higher batting average correspond to a higher salary?
 Rationale: Batting average is generally considered the premier stat for hitters; the best hitters have the highest batting averages.
-Methodolody: Compute five-number summaries by charter-school indicator variable
+Methodolody: 
 Limitations: 
 Possible Follow-up Steps: 
 
