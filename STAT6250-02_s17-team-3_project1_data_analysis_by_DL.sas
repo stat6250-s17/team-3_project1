@@ -23,22 +23,79 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 
 *
-Research Question: Do more home runs correspond to a higher salary?
-Rationale: A Home Run is the flashiest and most impressive thing one can do in baseball, so will more of these increase your salary?
-Methodology: 
-Limitations: 
-Possible Follow-up Steps:
+Research Question: Who are the top 20 baseball players with the highest number
+of home runs?
+
+Rationale: A home run is the flashiest and most impressive thing one can do 
+in baseball, so more of these should increase your salary.
+
+Methodology: Use PROC SORT to extract and sort the home run numbers from
+the dataset and use PROC PRINT to print out the first twenty observations
+from the temporary dataset. Then compare the salaries.
+
+Limitations: None
+
+Possible Follow-up Steps: Use PROC MEANS to compute the home run average
+for the data set and see just how far above this average the best players
+are.
+;
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Home Runs;
+run;
+
+proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=20);
+    id Player ID;
+    var Home Runs;
+run;
 
 *
-Research Question: Does a higher batting average correspond to a higher salary?
-Rationale: Batting average is generally considered the premier stat for hitters; the best hitters have the highest batting averages.
-Methodolody: 
-Limitations: 
-Possible Follow-up Steps: 
+Research Question: Who are the top 20 baseball players with the highest
+batting average?
+
+Rationale: Batting average is generally considered the premier stat for 
+hitters, so the batters with the highest averages should have higher 
+salaries.
+
+Methodolody: Use PROC SORT to extract and sort the batting average numbers 
+from the dataset and use PROC PRINT to print out the first twenty observations
+from the temporary dataset. Then compare the salaries.
+
+Limitations: None
+
+Possible Follow-up Steps: Possibly find a correlation between batting average
+and slugging percentage by comparing the top twenty players for each
+category using PROC SORT.
+;
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Batting Average;
+run;
+
+proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=20);
+    id Player ID;
+    var Batting Average;
+run;
 
 *
-Research Question: Which stat is more important when considering RBIs, Hits or Home Runs?
-Rationale: RBIs are how you score in baseball, so is it better to have more home runs, whch are less common but automatic, or more hits?
-Methodology: 
-Limitations: 
-Follow-up Steps: 
+Research Question: Who are the top 20 baseball players with the most RBIs?
+
+Rationale: RBIs are how you score in baseball, so the players with more
+of these should have high salaries. 
+
+Methodology: Use PROC SORT to extract and sort the RBI numbers from
+the dataset and use PROC PRINT to print out the first twenty observations
+from the temporary dataset. Then compare the salaries.
+
+Limitations: None
+
+Follow-up Steps: Compare the top twenty players by home runs to the top 
+twenty players by RBIs to see if there is a correlation between home runs 
+and RBIs.
+;
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending RBIs;
+run;
+
+proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=20);
+    id Player ID;
+    var RBIs;
+run;
