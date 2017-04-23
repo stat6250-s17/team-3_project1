@@ -52,11 +52,12 @@ run;
 Research Question: Who are the top 20 baseball players with the highest
 batting average?
 
-Rationale: Batting average is generally considered the premier stat for hitters, 
-so the batters with the highest averages should have higher salaries.
+Rationale: Batting average is generally considered the premier stat for 
+hitters, so the batters with the highest averages should have higher 
+salaries.
 
-Methodolody: Use PROC SORT to extract and sort the batting average numbers from
-the dataset and use PROC PRINT to print out the first twenty observations
+Methodolody: Use PROC SORT to extract and sort the batting average numbers 
+from the dataset and use PROC PRINT to print out the first twenty observations
 from the temporary dataset. Then compare the salaries.
 
 Limitations: None
@@ -86,8 +87,9 @@ from the temporary dataset. Then compare the salaries.
 
 Limitations: None
 
-Follow-up Steps: Compare the top twenty players by home runs to the top twenty
-players by RBIs to see if there is a correlation between home runs and RBIs.
+Follow-up Steps: Compare the top twenty players by home runs to the top 
+twenty players by RBIs to see if there is a correlation between home runs 
+and RBIs.
 ;
 proc sort data=Baseball_Salaries_analytic_file_temp;
     by descending RBIs;
