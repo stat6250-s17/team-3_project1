@@ -47,40 +47,80 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 
 *
 
-Research Question: How do the players career stat numbers compare with their most recent season?
+Research Question: How do the players with the most hits compare in salary to those with the most walks?
 
-Rationale: MLB players contracts are sometimes based off what the player did in their career as opposed to one season, so it is important to see how much longevity factors in the salaries.
+Rationale: Typically, hits are considered to be of greater value to baseall teams than walks.  However, due to the moneyball argument (a walk is as good as a hit) it would be interesting to see the salary comparison between the two stat categories.
 
-Methodology: 
+Methodology: Use PROC SORT to sort the ten highest numbers from the two categories in the dataset and then PROC PRINT to display the top ten in each.  Then compare the salaries for both categories.
 
 Limitations: 
 
-Possible Follow-up Steps:
+Possible Follow-up Steps:  Perhaps using PROC MEANS to compute the averqage salary among the top ten in the hits and walks categories.
+;
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Hits;
+run;
 
+proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
+    id Player ID;
+    var Hits;
+run;
 
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Walks;
+run;
+
+proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
+    id Player ID;
+    var Walks;
+run;
 
 *
 
-Research Question: What are the three baseball stats that factor into the highest paid players?
+Research Question: How does the salary for the top five free agents compare to the overall average salary?
 
-Rationale: This would determine what stats that teams look for when they pay the most money to their best players.
+Rationale:  The highest paid players make more money than the average by a lot, so comparing the top salaries to the average would indicate how much more.
 
-Methodology: 
+Methodology: Use PROC SORT to rank the highest paid players, then use PROC MEANS calculate the overall average salary among the free agents.  Finally, compare the overall average salary with the salary of the top five highest paid players.
 
 Limitations: 
 
-Possible Follow-up Steps:
+Possible Follow-up Steps:  Comparing the overall stats of the highest paid players to the average overall stats by PROC MEANS.
+;
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Salary;
+run;
 
-
+proc means data=Baseball_Salaries_analytic_file_temp;
+    var Salary;
+run;
 
 *
 
-Research Question: How do the players playoff stats for that season, if eligible, affect their salary?
+Research Question: How many of the top 30 highest paid players are among the 30 players with the most runs scored?
 
-Rationale: Players contracts can often depend on how they perform in the playoffs regardless of what they did throughout the season, so it would be interesting to see the playoffs afect their salary. 
+Rationale: Though home runs and RBIs are considered the most important baseball stats for a hitter to have, runs scored can be just as important for many reasons (i.e. getting on base, base running).  It will be interesting to test how much a team values runs scored in its salary.
 
-Methodology: 
+Methodology: Use PROC SORT to list top 30 players under Salary and also under Runs.  Then, note how many players make both lists.
 
 Limitations: 
 
-Possible Follow-up Steps:
+Possible Follow-up Steps:  Use PROC SORT to compare the highest salary players with runs scored against top salary players with home runs/RBIs.
+;
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Runs;
+run;
+
+proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=30);
+    id Player ID;
+    var Runs;
+run;
+
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Salary;
+run;
+
+proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=30);
+    id Player ID;
+    var Salary;
+run;
