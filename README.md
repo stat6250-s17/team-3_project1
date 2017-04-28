@@ -4,6 +4,6 @@ Team Nickname: The Proc-fessionals
 
 Members:
 
-Michael Cardoso
-Derek Lee
+Michael Cardoso,
+Derek Lee,
 Langqi Zhao
