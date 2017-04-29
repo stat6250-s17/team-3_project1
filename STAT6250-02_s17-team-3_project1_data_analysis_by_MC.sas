@@ -6,47 +6,26 @@
 
 *******************************************************************************;
 
-
-
  *
-
 This file uses the following analytic dataset to address several research
-
 questions regarding
 
 Dataset Name: Baseball_Salaries_analytic_file created in external file
-
 STAT6250-02_s17-team-3_project1_data_preparation.sas, which is assumed to be
-
 in the same directory as this file
 
 See included file for dataset properties
-
 ;
-
 
 * environmental setup;
 
-
-
 * set relative file import path to current directory (using standard SAS trick;
-
 X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILENAME))))""";
 
-
-
-
-
 * load external file that generates analytic dataset FRPM1516_analytic_file;
-
 %include '.\STAT6250-02_s17-team-3_project1_data_preparation.sas';
 
-
-
-
-
 *
-
 Research Question: How do the players with the most hits compare in salary to those with the most walks?
 
 Rationale: Typically, hits are considered to be of greater value to baseall teams than walks.  However, due to the moneyball argument (a walk is as good as a hit) it would be interesting to see the salary comparison between the two stat categories.
@@ -76,7 +55,6 @@ proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
 run;
 
 *
-
 Research Question: How does the salary for the top five free agents compare to the overall average salary?
 
 Rationale:  The highest paid players make more money than the average by a lot, so comparing the top salaries to the average would indicate how much more.
@@ -96,7 +74,6 @@ proc means data=Baseball_Salaries_analytic_file_temp;
 run;
 
 *
-
 Research Question: How many of the top 30 highest paid players are among the 30 players with the most runs scored?
 
 Rationale: Though home runs and RBIs are considered the most important baseball stats for a hitter to have, runs scored can be just as important for many reasons (i.e. getting on base, base running).  It will be interesting to test how much a team values runs scored in its salary.
