@@ -32,7 +32,7 @@ Rationale: Typically, hits are considered to be of greater value to baseall team
 
 Methodology: Use PROC SORT to sort the ten highest numbers from the two categories in the dataset and then PROC PRINT to display the top ten in each.  Then compare the salaries for both categories.
 
-Limitations: 
+Limitations: This methodology wouldn't necessarily be able to analyze the data by simply sorting it, so additional tests would need to be made.
 
 Possible Follow-up Steps:  Perhaps using PROC MEANS to compute the averqage salary among the top ten in the hits and walks categories.
 ;
@@ -61,7 +61,7 @@ Rationale:  The highest paid players make more money than the average by a lot, 
 
 Methodology: Use PROC SORT to rank the highest paid players, then use PROC MEANS calculate the overall average salary among the free agents.  Finally, compare the overall average salary with the salary of the top five highest paid players.
 
-Limitations: 
+Limitations: Using PROC MEANS for the top five free agents would be needed to properly answer this question.
 
 Possible Follow-up Steps:  Comparing the overall stats of the highest paid players to the average overall stats by PROC MEANS.
 ;
@@ -80,7 +80,7 @@ Rationale: Though home runs and RBIs are considered the most important baseball 
 
 Methodology: Use PROC SORT to list top 30 players under Salary and also under Runs.  Then, note how many players make both lists.
 
-Limitations: 
+Limitations: Only the top 30 players of each category are selected for data.  Therefore, there is missing data.
 
 Possible Follow-up Steps:  Use PROC SORT to compare the highest salary players with runs scored against top salary players with home runs/RBIs.
 ;
