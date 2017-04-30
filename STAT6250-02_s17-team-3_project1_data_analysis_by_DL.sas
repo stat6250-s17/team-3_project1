@@ -61,7 +61,8 @@ proc print
     var 
         Player_Name Salary Home_Runs
     ;
-        title 'Top One Hundred Baseball Players by Home Run Numbers'
+    title 
+        'Top One Hundred Baseball Players by Home Run Numbers'
     ;
 run;
 title;
@@ -112,7 +113,8 @@ proc print
     var 
         Player_Name Salary Batting_Average
     ;
-        title 'Top One Hundred Baseball Players by Batting Average'
+    title 
+        'Top One Hundred Baseball Players by Batting Average'
     ;
 run;
 title;
@@ -162,7 +164,8 @@ proc print
     var 
         Player_Name Salary RBIs
     ;
-        title 'Top One Hundred Baseball Players by RBIs'
+    title 
+        'Top One Hundred Baseball Players by RBIs'
     ;
 run;
 title;
