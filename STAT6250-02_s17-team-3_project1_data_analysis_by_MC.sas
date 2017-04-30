@@ -45,8 +45,7 @@ footnote1
 footnote2
 'Although not by a large margin, the players with the most hits make more money than those who walk the most on average'.
 ;
-Methodology: Use PROC SORT to sort the ten highest numbers from the two
-categories in the dataset and then PROC PRINT to display the top ten in each.
+Methodology: Use PROC PRINT to display the top ten in each.
 Then compare the salaries for both categories.
 
 Limitations: This methodology would not necessarily be able to analyze the data
@@ -55,23 +54,21 @@ by simply sorting it, so additional tests would need to be made.
 Possible Follow-up Steps:  Perhaps using PROC MEANS to compute the averqage
 salary among the top ten in the hits and walks categories.
 ;
-proc sort data=Baseball_Salaries_analytic_file_temp;
-    by descending Hits;
-run;
 
 proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
     id Player ID;
     var Hits;
 run;
+title;
+footnote;
 
-proc sort data=Baseball_Salaries_analytic_file_temp;
-    by descending Walks;
-run;
 
 proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
     id Player ID;
     var Walks;
 run;
+title;
+footnote;
 
 *
 title1
@@ -92,10 +89,7 @@ footnote2
 'This shows that the top five free agents make over four times as much money as the average free agent'.
 ;
 
-Methodology: Use PROC SORT to rank the highest paid players, then use
-PROC MEANS calculate the overall average salary among the free agents.
-Finally, compare the overall average salary with the salary of the top five
-highest paid players.
+Methodology: 
 
 Limitations: Using PROC MEANS for the top five free agents would be needed to
 properly answer this question.
@@ -103,13 +97,6 @@ properly answer this question.
 Possible Follow-up Steps: Comparing the overall stats of the highest paid
 players to the average overall stats by PROC MEANS.
 ;
-proc sort data=Baseball_Salaries_analytic_file_temp;
-    by descending Salary;
-run;
-
-proc means data=Baseball_Salaries_analytic_file_temp;
-    var Salary;
-run;
 
 *
 title1
@@ -132,8 +119,7 @@ footnote2
 'This indicates roughly a third of the top hits leaders are paid among the highest.'
 ;
 
-Methodology: Use PROC SORT to list top 30 players under Salary and also under
-Runs.  Then, note how many players make both lists.
+Methodology: 
 
 Limitations: Only the top 30 players of each category are selected for data.
 Therefore, there is missing data.
@@ -141,20 +127,17 @@ Therefore, there is missing data.
 Possible Follow-up Steps:  Use PROC SORT to compare the highest salary players
 with runs scored against top salary players with home runs/RBIs.
 ;
-proc sort data=Baseball_Salaries_analytic_file_temp;
-    by descending Runs;
-run;
 
 proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=30);
     id Player ID;
     var Runs;
 run;
-
-proc sort data=Baseball_Salaries_analytic_file_temp;
-    by descending Salary;
-run;
+title;
+footnote;
 
 proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=30);
     id Player ID;
     var Salary;
 run;
+title;
+footnote;
