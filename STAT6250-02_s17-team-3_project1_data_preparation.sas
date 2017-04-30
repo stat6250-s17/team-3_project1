@@ -97,3 +97,54 @@ data Baseball_Salaries_analytic_file;
     ;
     set Baseball_raw;
 run;
+
+* 
+Use PROC SORT to extract and sort the home run numbers for each player 
+from the original dataset, and output the results to a temporary 
+dataset which will be used as part of data analysis by DL.
+;
+
+proc sort
+        data=Baseball_Salaries_analytic_file
+    ;
+    by
+        descending Home_Runs
+    ;
+    output
+        out=Home_Runs_temp
+    ;
+run;
+
+* 
+Use PROC SORT to extract and sort the batting averages for each player 
+from the original dataset, and output the results to a temporary
+dataset which will be used as part of data analysis by DL.
+;
+
+proc sort
+        data=Baseball_Salaries_analytic_file
+    ;
+    by
+        descending Batting_Average
+    ;
+    output
+        out=Batting_Average_temp
+    ;
+run;
+
+* 
+Use PROC SORT to extract and sort the RBI numbers for each player 
+from the original dataset, and output the results to a temporary
+dataset which will be used as part of data analysis by DL.
+;
+
+proc sort
+        data=Baseball_Salaries_analytic_file
+    ;
+    by
+        descending RBIs
+    ;
+    output
+        out=RBIs_temp
+    ;
+run;
