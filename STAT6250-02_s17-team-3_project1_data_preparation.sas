@@ -148,3 +148,46 @@ proc sort
         out=RBIs_temp
     ;
 run;
+
+*
+Use PROC SORT to sort the ten highest numbers from the two
+categories in the dataset
+;
+
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Hits;
+run;
+
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Walks;
+run;
+
+*
+Use PROC SORT to rank the highest paid players, then use
+PROC MEANS calculate the overall average salary among the free agents.
+Finally, compare the overall average salary with the salary of the top five
+highest paid players.
+;
+
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Salary;
+run;
+
+proc means data=Baseball_Salaries_analytic_file_temp;
+    var Salary;
+run;
+
+*
+Use PROC SORT to list top 30 players under Salary and also under
+Runs.  Then, note how many players make both lists.
+;
+
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Runs;
+run;
+
+
+proc sort data=Baseball_Salaries_analytic_file_temp;
+    by descending Salary;
+run;
+
