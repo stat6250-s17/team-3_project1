@@ -40,6 +40,7 @@ footnote2
 'In comparison, the next 50 players contain more players below 2000 and less players above 3000.'
 ;
 
+*
 Methodology: Use PROC PRINT to print out the first twenty observations
 from the home runs temporary dataset created in the data prep file. 
 Then compare the salaries.
@@ -92,6 +93,7 @@ footnote3
 'Further analysis, such as removing players below a certain total base number might be necessary.'
 ;
 
+*
 Methodolody: Use PROC PRINT to print out the first twenty observations
 from the batting average temporary dataset created in the data prep
 file. Then compare the salaries.
@@ -143,6 +145,7 @@ footnote3
 'Home Runs and RBI numbers have a better correlation to higher salaries than batting average.'
 ;
 
+*
 Methodology: Use PROC PRINT to print out the first twenty observations
 from the RBI temporary dataset created in the data prep file. 
 Then compare the salaries.
