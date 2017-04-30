@@ -26,13 +26,24 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 %include '.\STAT6250-02_s17-team-3_project1_data_preparation.sas';
 
 *
+title1
 Research Question: How do the players with the most hits compare in salary to
 those with the most walks?
 
+title2
 Rationale: Typically, hits are considered to be of greater value to baseall
 teams than walks.  However, due to the moneyball argument (a walk is as good as
 a hit) it would be interesting to see the salary comparison between the two
 stat categories.
+;
+
+footnote1
+'The top ten hit leaders made about $400,000 more than the top ten walk leaders'
+;
+
+footnote2
+'Although not by a large margin, the players with the most hits make more money than those who walk the most on average'.
+;
 
 Methodology: Use PROC SORT to sort the ten highest numbers from the two
 categories in the dataset and then PROC PRINT to display the top ten in each.
@@ -63,11 +74,21 @@ proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
 run;
 
 *
+title1
 Research Question: How does the salary for the top five free agents compare to
 the overall average salary?
 
+title2
 Rationale:  The highest paid players make more money than the average by a lot,
 so comparing the top salaries to the average would indicate how much more.
+
+footnote1
+'the overall average salary is $1,248,000 while the top five free agents make an average o $5210'.
+;
+
+footnote2
+This shows that the top five free agents make over four times as much money as the average free agent'.
+;
 
 Methodology: Use PROC SORT to rank the highest paid players, then use
 PROC MEANS calculate the overall average salary among the free agents.
@@ -89,13 +110,24 @@ proc means data=Baseball_Salaries_analytic_file_temp;
 run;
 
 *
-Research Question: How many of the top 30 highest paid players are among the 30
-players with the most runs scored?
+title1
+'Research Question: How many of the top 30 highest paid players are among the 30
+players with the most runs scored?'
 
-Rationale: Though home runs and RBIs are considered the most important baseball
+title2
+'Rationale: Though home runs and RBIs are considered the most important baseball
 stats for a hitter to have, runs scored can be just as important for many
 reasons (i.e. getting on base, base running).  It will be interesting to test
-how much a team values runs scored in its salary.
+how much a team values runs scored in its salary.'
+;
+
+footnote1
+'11 of the top 30 highest paid free agents are on the top 30 hits leaders'.
+;
+
+footnote2;
+This indicates roughly a third of the top hits leaders are paid among the highest'.
+;
 
 Methodology: Use PROC SORT to list top 30 players under Salary and also under
 Runs.  Then, note how many players make both lists.
