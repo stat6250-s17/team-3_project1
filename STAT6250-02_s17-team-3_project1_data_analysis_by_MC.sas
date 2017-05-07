@@ -25,7 +25,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 * load external file that generates analytic dataset FRPM1516_analytic_file;
 %include '.\STAT6250-02_s17-team-3_project1_data_preparation.sas';
 
-*
+
 title1
 'Research Question: How do the players with the most hits compare in salary to
 those with the most walks?'
@@ -70,7 +70,7 @@ run;
 title;
 footnote;
 
-*
+
 title1
 'Research Question: How does the salary for the top five free agents compare to
 the overall average salary?'
@@ -98,7 +98,7 @@ Possible Follow-up Steps: Comparing the overall stats of the highest paid
 players to the average overall stats by PROC MEANS.
 ;
 
-*
+
 title1
 'Research Question: How many of the top 30 highest paid players are among the 30
 players with the most runs scored?'
