@@ -45,6 +45,7 @@ footnote1
 footnote2
 'Although not by a large margin, the players with the most hits make more money than those who walk the most on average'.
 ;
+*
 Methodology: Use PROC PRINT to display the top ten in each.
 Then compare the salaries for both categories.
 
@@ -88,7 +89,7 @@ footnote1
 footnote2
 'This shows that the top five free agents make over four times as much money as the average free agent'.
 ;
-
+*
 Methodology: 
 
 Limitations: Using PROC MEANS for the top five free agents would be needed to
@@ -118,8 +119,8 @@ footnote1
 footnote2
 'This indicates roughly a third of the top hits leaders are paid among the highest.'
 ;
-
-Methodology: 
+*
+Methodology: Use PROC PRINT to display the top 30 in both categories.  Then, make comparisons and draw conclusions.
 
 Limitations: Only the top 30 players of each category are selected for data.
 Therefore, there is missing data.
