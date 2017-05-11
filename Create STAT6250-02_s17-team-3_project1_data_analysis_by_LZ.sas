@@ -39,23 +39,22 @@ footnote2
 'Most players who makes o error having a below-average salary.'
 ;
 
-Methodology: Can use PROC MEANS to get the average number of errors. Then use PROC SORT by descending to find the players with highest salary and use PROC PRINT to print and compare observations with errors. 
+Methodology: Use PROC PRINT to print first 50 observations then compare with errors. 
 
 Limitations: None
 
-Possible Follow-up Steps:
+Possible Follow-up Steps: Perhaps can use PROC MEANS to get the average number of errors. Then use PROC SORT by descending to find the players with highest salary.
 
-proc means data=Baseball_Salaries_analytic_file_temp;
-    var Errors;
-run;
-
-proc sort data=Baseball_Salaries_analytic_file_temp;
-    by descending Salary;
-run;
-
-proc print noobs data=Baseball_Salaries_analytic_file_temp;
-    id Player ID;
-    var Salary;
+proc print 
+        noobs 
+        data= data=Baseball_Salaries_analytic_file_temp(obs=50)
+;
+    id 
+        Player_ID
+    ;
+    var 
+        Salary
+    ;
 run;
 title;
 footnote;
@@ -78,23 +77,22 @@ footnote2
 'Seems that stolen bases is not a significant element in determining salaries. '
 ;
 
-Methodology: Can use PROC MEANS to get the average number of salary, then use PROC SORT by descending to find the players with most stolen bases and use PROC PRINT to print and compare observations with salaries.  
+Methodology: Use PROC PRINT to print first 30 obeservations then compare with salaries.  
 
 Limitations: None
 
-Possible Follow-up Steps:
+Possible Follow-up Steps: Perhaps can use PROC MEANS to get the average number of salary, then use PROC SORT by descending to find the players with most stolen bases.
 
-proc means data=Baseball_Salaries_analytic_file_temp;
-    var Salary;
-run;
-
-proc sort data=Baseball_Salaries_analytic_file_temp;
-    by descending Stolen Bases;
-run;
-
-proc print noobs data=Baseball_Salaries_analytic_file_temp;
-    id Player ID;
-    var Stolen Bases;
+proc print 
+        noobs 
+        data= data=Baseball_Salaries_analytic_file_temp(obs=30)
+    ;
+    id 
+        Player_ID
+    ;
+    var 
+        Stolen Bases
+    ;
 run;
 title;
 footnote;
@@ -121,23 +119,22 @@ footnote3
 'Seems that higher OBP is not in the correspondence with the higher salary.'
 ;
 
-Methodology: Can use PROC MEANS to get the average number of salary, then use PROC SORT by descending to find the players with highest OPB and use PROC PRINT to print and compare observations with salaries.
+Methodology: Use PROC PRINT to print first 30 observations then compare with salaries.
 
 Limitations: None
 
-Possible Follow-up Steps:
+Possible Follow-up Steps: Perhaps can use PROC MEANS to get the average number of salary, then use PROC SORT by descending to find the players with highest OPB.
 
-proc means data=Baseball_Salaries_analytic_file_temp;
-    var Salary;
-run;
-
-proc sort data=Baseball_Salaries_analytic_file_temp;
-    by descending On-Base Percentage;
-run;
-
-proc print noobs data=Baseball_Salaries_analytic_file_temp;
-    id Player ID;
-    var On-Base Percecntage;
+proc print 
+        noobs 
+        data= data=Baseball_Salaries_analytic_file_temp(obs=30)
+    ;
+    id 
+        Player_ID
+    ;
+    var 
+        On-Base Percentage
+    ;
 run;
 title;
 footnote;
