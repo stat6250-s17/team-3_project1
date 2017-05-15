@@ -101,7 +101,7 @@ footnote1
 ;
 
 footnote2
-'However, I think that these are outliers and do not represent the best hitters since all but one of the players shown with salaries above 1000 are significantly above 1000.'
+'However, I think that these are outliers and do not represent the best hitters since all but one of the players shown with salaries above 1000 are significantly above 1000, and thus, the average of 1248.53.'
 ;
 
 footnote3
@@ -154,7 +154,7 @@ footnote1
 ;
 
 footnote2
-'Very few players among the top 20 players by RBI numbers have salaries below 2000. On the contrary, a lot of them have salaries above 4000 and even one reaching 6000.'
+'Very few players among the top 20 players by RBI numbers have salaries below 2000. On the contrary, a lot of them have salaries above 4000 and even one reaching 6000. These salaries are way above the average of 1248.53'
 ;
 
 footnote3
