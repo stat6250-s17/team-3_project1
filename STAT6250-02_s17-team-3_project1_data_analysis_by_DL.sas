@@ -18,14 +18,32 @@ See included file for dataset properties
 X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILENAME))))""";
 
 
-* load external file that generates analytic dataset FRPM1516_analytic_file;
+* load external file that generates analytic dataset Baseball_Salaries_analytic_file;
 %include '.\STAT6250-02_s17-team-3_project1_data_preparation.sas';
 
+title1
+'Average Salary for Baseball Players for the 1991-1992 Baseball Season'
+;
+
+footnote1
+'This number will be used to help answer the following three research questions regarding important baseball stats and salary amount.'
+;
+
+proc means
+		mean
+		data=Baseball_Salaries_analytic_file
+	;
+	var
+		Salary
+	;
+run;
+title;
+footnote;
 
 
 
 title1
-'Research Question: Who are the top 100 baseball players with the highest number of home runs?'
+'Research Question: Who are the top 20 baseball players with the highest number of home runs?'
 ;
 
 title2
@@ -33,16 +51,16 @@ title2
 ;
 
 footnote1
-'The top fifty players by home run numbers definitely have larger salaries. While there are a couple outliers, most of the salaries are around 2000-3000 with a couple around 4000 and 5000.'
+'The average salary for this dataset is 1248.53. While there are a couple outliers, most of the salaries are above 2000 with some even reaching 4000 and 5000. The top twenty players by home run numbers definitely have larger salaries. '
 ;
 
 footnote2
-'In comparison, the next 50 players contain more players below 2000 and less players above 3000.'
+'This shows that if a baseball player can be skilled enough to hit many home runs, he has a great chance of increasing his salary.'
 ;
 
 *
 Methodology: Use PROC PRINT to print out the first twenty observations
-from the home runs temporary dataset created in the data prep file. 
+from the sorted home runs temporary dataset created in the data prep file. 
 Then compare the salaries.
 
 Limitations: None
@@ -54,16 +72,13 @@ are.
 
 proc print 
         noobs 
-        data=Home_Runs_temp(obs=100)
+        data=Home_Runs_temp(obs=20)
     ;
     id 
         Player_ID
     ;
     var 
         Player_Name Salary Home_Runs
-    ;
-    title 
-        'Top One Hundred Baseball Players by Home Run Numbers'
     ;
 run;
 title;
@@ -74,7 +89,7 @@ footnote;
 
 
 title1
-'Research Question: Who are the top 100 baseball players with the highest batting average?'
+'Research Question: Who are the top 20 baseball players with the highest batting average?'
 ;
 
 title2
@@ -82,15 +97,19 @@ title2
 ;
 
 footnote1
-'Surprisingly, it does not look like the baseball players with the top batting averages have higher salaries.'
+'Surprisingly, there are a good amount of players with Salaries under 1000 with high batting averages.'
 ;
 
 footnote2
-'This might be because the players with higher batting averages have less at bats, and thus less chances to lower their batting average.'
+'However, I think that these are outliers and do not represent the best hitters since all but one of the players shown with salaries above 1000 are significantly above 1000.'
 ;
 
 footnote3
-'Further analysis, such as removing players below a certain total base number might be necessary.'
+'I would say that the players shown with low salaries did not get many at bats which means less chances to lower their averages. Further analysis, such as removing players below a certain total base number might be necessary.'
+;
+
+footnote4
+'Overall, I think there is a correlation between batting average and salary, but it is not as strong as the relationship with home runs'
 ;
 
 *
@@ -107,16 +126,13 @@ category using PROC SORT.
 
 proc print 
         noobs 
-        data=Batting_Average_temp(obs=100)
+        data=Batting_Average_temp(obs=20)
     ;
     id 
         Player_ID
     ;
     var 
         Player_Name Salary Batting_Average
-    ;
-    title 
-        'Top One Hundred Baseball Players by Batting Average'
     ;
 run;
 title;
@@ -126,7 +142,7 @@ footnote;
 
 
 title1
-'Research Question: Who are the top 100 baseball players with the most RBIs?'
+'Research Question: Who are the top 20 baseball players with the most RBIs?'
 ;
 
 title2
@@ -138,7 +154,7 @@ footnote1
 ;
 
 footnote2
-'Very few players among the top 50 players by RBI numbers have salaries below 2000.'
+'Very few players among the top 20 players by RBI numbers have salaries below 2000. On the contrary, a lot of them have salaries above 4000 and even one reaching 6000.'
 ;
 
 footnote3
@@ -159,16 +175,13 @@ and RBIs.
 
 proc print 
         noobs 
-        data=RBIs_temp(obs=100)
+        data=RBIs_temp(obs=20)
     ;
     id 
         Player_ID
     ;
     var 
         Player_Name Salary RBIs
-    ;
-    title 
-        'Top One Hundred Baseball Players by RBIs'
     ;
 run;
 title;
