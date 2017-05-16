@@ -31,12 +31,12 @@ each player with a number from 1 to 337 for the primary key.
 
 * setup environmental parameters;
 %let inputDatasetURL =
-https://github.com/stat6250/team-3_project1/blob/master/Baseball%20Salaries.xlsx
+https://github.com/stat6250/team-3_project1/blob/master/Baseball_Salaries.xlsx?raw=true
 ;
 
 
 * load raw FRPM dataset over the wire;
-filename tempfile TEMP;
+filename tempfile "%sysfunc(getoption(work))/tempfile.xlsx";
 proc http
     method="get"
     url="&inputDatasetURL."
@@ -46,14 +46,14 @@ run;
 proc import
     file=tempfile
     out=baseball_raw
-    dbms=xls;
+    dbms=xlsx;
 run;
 filename tempfile clear;
 
 
 * check raw FRPM dataset for duplicates with respect to its composite key;
 proc sort nodupkey data=Baseball_raw dupout=Baseball_raw_dups out=_null_;
-    by Player ID Player Name;
+    by Player_ID Player_Name;
 run;
 
 
@@ -62,38 +62,128 @@ minimal cleaning/transformation needed to address research questions in
 corresponding data-analysis files;
 data Baseball_Salaries_analytic_file;
     retain
-        Player ID
-        Player Name
+        Player_ID
+        Player_Name
         Salary
-        Batting Average
-        On-Base Percentage
-        Slugging Percentage
+        Batting_Average
+        OnBase_Percentage
+        Slugging_Percentage
         Runs
         Hits
         Doubles
         Triples
-        Home Runs
+        Home_Runs
         RBIs
-        Strike-Outs
-        Stolen Bases
+		Walks
+        Strike_Outs
+        Stolen_Bases
         Errors
     ;
     keep
-        Player ID
-        Player Name
+        Player_ID
+        Player_Name
         Salary
-        Batting Average
-        On-Base Percentage
-        Slugging Percentage
+        Batting_Average
+        OnBase_Percentage
+        Slugging_Percentage
         Runs
         Hits
         Doubles
         Triples
-        Home Runs
+        Home_Runs
         RBIs
-        Strike-Outs
-        Stolen Bases
+		Walks
+        Strike_Outs
+        Stolen_Bases
         Errors
     ;
     set Baseball_raw;
 run;
+
+* 
+Use PROC SORT to extract and sort the home run numbers for each player 
+from the original dataset, and output the results to a temporary 
+dataset which will be used as part of data analysis by DL.
+;
+ 
+proc sort
+        data=Baseball_Salaries_analytic_file
+		out=Home_Runs_temp
+    ;
+    by
+        descending Home_Runs
+    ;
+run;
+
+* 
+Use PROC SORT to extract and sort the batting averages for each player 
+from the original dataset, and output the results to a temporary
+dataset which will be used as part of data analysis by DL.
+;
+
+proc sort
+        data=Baseball_Salaries_analytic_file
+		out=Batting_Average_temp
+    ;
+    by
+        descending Batting_Average
+    ;
+run;
+
+* 
+Use PROC SORT to extract and sort the RBI numbers for each player 
+from the original dataset, and output the results to a temporary
+dataset which will be used as part of data analysis by DL.
+;
+
+proc sort
+        data=Baseball_Salaries_analytic_file
+		out=RBIs_temp
+    ;
+    by
+        descending RBIs
+    ;
+run;
+
+*
+Use PROC SORT to sort the ten highest numbers from the two
+categories in the dataset
+;
+
+proc sort data=Baseball_Salaries_analytic_file;
+    by descending Hits;
+run;
+
+proc sort data=Baseball_Salaries_analytic_file;
+    by descending Walks;
+run;
+
+*
+Use PROC SORT to rank the highest paid players, then use
+PROC MEANS calculate the overall average salary among the free agents.
+Finally, compare the overall average salary with the salary of the top five
+highest paid players.
+;
+
+proc sort data=Baseball_Salaries_analytic_file;
+    by descending Salary;
+run;
+
+*proc means data=Baseball_Salaries_analytic_file;
+    *var Salary;
+*run;
+
+*
+Use PROC SORT to list top 30 players under Salary and also under
+Runs.  Then, note how many players make both lists.
+;
+
+proc sort data=Baseball_Salaries_analytic_file;
+    by descending Runs;
+run;
+
+
+proc sort data=Baseball_Salaries_analytic_file;
+    by descending Salary;
+run;
+

@@ -17,14 +17,26 @@ in the same directory as this file
 See included file for dataset properties
 ;
 
-* environmental setup;
+* setup environmental parameters;
+%let inputDatasetURL =
+https://github.com/stat6250/team-3_project1/blob/master/Baseball_Salaries.xlsx?raw=true
+;
 
-* set relative file import path to current directory (using standard SAS trick;
-X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILENAME))))""";
 
-* load external file that generates analytic dataset FRPM1516_analytic_file;
-%include '.\STAT6250-02_s17-team-3_project1_data_preparation.sas';
-
+* load raw FRPM dataset over the wire;
+filename tempfile "%sysfunc(getoption(work))/tempfile.xlsx";
+proc http
+    method="get"
+    url="&inputDatasetURL."
+    out=tempfile
+    ;
+run;
+proc import
+    file=tempfile
+    out=baseball_raw
+    dbms=xlsx;
+run;
+filename tempfile clear;
 
 title1
 'Research Question: How do the players with the most hits compare in salary to those with the most walks?'
@@ -52,7 +64,7 @@ Possible Follow-up Steps:  Perhaps using PROC MEANS to compute the average
 salary among the top ten in the hits and walks categories.
 ;
 
-proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
+proc print noobs data=Baseball_Salaries_analytic_file(obs=10);
     id Player_ID;
     var Hits;
 run;
@@ -60,7 +72,7 @@ title;
 footnote;
 
 
-proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
+proc print noobs data=Baseball_Salaries_analytic_file(obs=10);
     id Player_ID;
     var Walks;
 run;
@@ -92,7 +104,11 @@ properly answer this question.
 Possible Follow-up Steps: Comparing the overall stats of the highest paid
 players to the average overall stats by PROC MEANS.
 ;
-
+proc means data=Baseball_Salaries_analytic_file;
+    var Salary;
+run;
+title;
+footnote;
 
 title1
 'Research Question: How many of the top 30 highest paid players are among the 30 players with the most runs scored?'
@@ -120,14 +136,14 @@ Possible Follow-up Steps:  Use PROC SORT to compare the highest salary players
 with runs scored against top salary players with home runs/RBIs.
 ;
 
-proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=30);
+proc print noobs data=Baseball_Salaries_analytic_file(obs=30);
     id Player_ID;
     var Runs;
 run;
 title;
 footnote;
 
-proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=30);
+proc print noobs data=Baseball_Salaries_analytic_file(obs=30);
     id Player_ID;
     var Salary;
 run;
