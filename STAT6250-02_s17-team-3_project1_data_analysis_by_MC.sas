@@ -35,11 +35,11 @@ title2
 ;
 
 footnote1
-'The top ten hit leaders made about $400,000 more than the top ten walk leaders'
+'The top ten hit leaders made about $400,000 more than the top ten walk leaders.'
 ;
 
 footnote2
-'Although not by a large margin, the players with the most hits make more money than those who walk the most on average'.
+'Although not by a large margin, the players with the most hits make more money than those who walk the most on average.'
 ;
 *
 Methodology: Use PROC PRINT to display the top ten in each.
@@ -53,7 +53,7 @@ salary among the top ten in the hits and walks categories.
 ;
 
 proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
-    id Player ID;
+    id Player_ID;
     var Hits;
 run;
 title;
@@ -61,7 +61,7 @@ footnote;
 
 
 proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=10);
-    id Player ID;
+    id Player_ID;
     var Walks;
 run;
 title;
@@ -77,11 +77,11 @@ title2
 ;
 
 footnote1
-'the overall average salary is $1,248,000 while the top five free agents make an average of $5210'.
+'The overall average salary is $1,248,000 while the top five free agents make an average of $5210.'
 ;
 
 footnote2
-'This shows that the top five free agents make over four times as much money as the average free agent'.
+'This shows that the top five free agents make over four times as much money as the average free agent.'
 ;
 *
 Methodology: 
@@ -99,7 +99,7 @@ title1
 ;
 
 title2
-'Rationale: Though home runs and RBIs are considered the most important baseball stats for a hitter to have, runs scored can be just as important for manyreasons (i.e. getting on base, base running).  It will be interesting to testhow much a team values runs scored in its salary.'
+'Rationale: Though home runs and RBIs are considered the most important baseball stats for a hitter to have, runs scored can be just as important for manyreasons (i.e. getting on base, base running).  It will be interesting to test how much a team values runs scored in its salary.'
 ;
 
 footnote1
@@ -121,14 +121,14 @@ with runs scored against top salary players with home runs/RBIs.
 ;
 
 proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=30);
-    id Player ID;
+    id Player_ID;
     var Runs;
 run;
 title;
 footnote;
 
 proc print noobs data=Baseball_Salaries_analytic_file_temp(obs=30);
-    id Player ID;
+    id Player_ID;
     var Salary;
 run;
 title;
