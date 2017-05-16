@@ -63,22 +63,27 @@ by simply sorting it, so additional tests would need to be made.
 Possible Follow-up Steps:  Perhaps using PROC MEANS to compute the average
 salary among the top ten in the hits and walks categories.
 ;
+proc sort data=Baseball_Salaries_analytic_file;
+    by descending Hits;
+run;
 
 proc print noobs data=Baseball_Salaries_analytic_file(obs=10);
     id Player_ID;
-    var Hits;
+    var Hits Salary;
 run;
 title;
 footnote;
 
+proc sort data=Baseball_Salaries_analytic_file;
+    by descending Walks;
+run;
 
 proc print noobs data=Baseball_Salaries_analytic_file(obs=10);
     id Player_ID;
-    var Walks;
+    var Walks Salary;
 run;
 title;
 footnote;
-
 
 title1
 'Research Question: How does the salary for the top five free agents compare to the overall average salary?'
@@ -89,7 +94,7 @@ title2
 ;
 
 footnote1
-'The overall average salary is $1,248,000 while the top five free agents make an average of $5210.'
+'The overall average salary is $1,248,000 while the top five free agents make an average of $5,210,000.'
 ;
 
 footnote2
@@ -104,6 +109,10 @@ properly answer this question.
 Possible Follow-up Steps: Comparing the overall stats of the highest paid
 players to the average overall stats by PROC MEANS.
 ;
+proc sort data=Baseball_Salaries_analytic_file;
+    by descending Salary;
+run;
+
 proc means data=Baseball_Salaries_analytic_file;
     var Salary;
 run;
