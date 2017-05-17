@@ -94,7 +94,7 @@ title2
 ;
 
 footnote1
-'The overall average salary is $1,248,000 while the top five free agents make an average of $5,210,000.'
+'The mean of the top five free agents by salary make an average of $5,210,000 while the overall average salary of the free agents is shown as $1,248,000.'
 ;
 
 footnote2
