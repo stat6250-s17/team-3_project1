@@ -133,7 +133,7 @@ proc print
         Player_ID
     ;
     var 
-        On-Base Percentage
+        On_Base Percentage
     ;
 run;
 title;
