@@ -38,8 +38,57 @@ proc import
 run;
 filename tempfile clear;
 
+* check raw FRPM dataset for duplicates with respect to its composite key;
+proc sort nodupkey data=Baseball_raw dupout=Baseball_raw_dups out=_null_;
+    by Player_ID Player_Name;
+run;
+
+
+* build analytic dataset from FRPM dataset with the least number of columns and
+minimal cleaning/transformation needed to address research questions in
+corresponding data-analysis files;
+data Baseball_Salaries_analytic_file;
+    retain
+        Player_ID
+        Player_Name
+        Salary
+        Batting_Average
+        OnBase_Percentage
+        Slugging_Percentage
+        Runs
+        Hits
+        Doubles
+        Triples
+        Home_Runs
+        RBIs
+		Walks
+        Strike_Outs
+        Stolen_Bases
+        Errors
+    ;
+    keep
+        Player_ID
+        Player_Name
+        Salary
+        Batting_Average
+        OnBase_Percentage
+        Slugging_Percentage
+        Runs
+        Hits
+        Doubles
+        Triples
+        Home_Runs
+        RBIs
+		Walks
+        Strike_Outs
+        Stolen_Bases
+        Errors
+    ;
+    set Baseball_raw;
+run;
+
 title1
-'Research Question: How do the players with the most hits compare in salary to those with the most walks?'
+'Research Question: How do the baseball players with the most hits compare in salary to those with the most walks?'
 ;
 
 title2
@@ -47,7 +96,7 @@ title2
 ;
 
 footnote1
-'The top ten hit leaders made about $400,000 more than the top ten walk leaders.'
+'By calulating the mean salary for each category, we see that the top ten hit leaders made an average of $3,282,300, while the top ten walk leaders averaged a $2,861,300.  Thus there is a difference of $421,000.'
 ;
 
 footnote2
@@ -90,11 +139,11 @@ title1
 ;
 
 title2
-'Rationale:  The highest paid players make more money than the average by a lot, so comparing the top salaries to the average would indicate how much more.'
+'Rationale:  The highest paid players typically make more money than the average by a lot, so comparing the top salaries to the average would indicate how much more.'
 ;
 
 footnote1
-'The mean of the top five free agents by salary make an average of $5,210,000 while the overall average salary of the free agents is shown as $1,248,000.'
+'The mean of the top five free agents by salary make an average of $5,210,000 while the overall average salary of the free agents is shown as $1,248,530.'
 ;
 
 footnote2
@@ -113,6 +162,11 @@ proc sort data=Baseball_Salaries_analytic_file;
     by descending Salary;
 run;
 
+proc print noobs data=Baseball_Salaries_analytic_file(obs=5);
+    id Player_ID;
+    var Salary;
+run;
+
 proc means data=Baseball_Salaries_analytic_file;
     var Salary;
 run;
@@ -124,11 +178,11 @@ title1
 ;
 
 title2
-'Rationale: Though home runs and RBIs are considered the most important baseball stats for a hitter to have, runs scored can be just as important for manyreasons (i.e. getting on base, base running).  It will be interesting to test how much a team values runs scored in its salary.'
+'Rationale: Though home runs and RBIs are considered the most important baseball stats for a hitter to have, runs scored can be just as important for many reasons (i.e. getting on base, base running).  It will be interesting to test how much a team values runs scored in its salary.'
 ;
 
 footnote1
-'11 of the top 30 highest paid free agents are on the top 30 hits leaders.'
+'11 of the top 30 highest paid free agents are on the top 30 hits leaders list.'
 ;
 
 footnote2
